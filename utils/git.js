@@ -10,5 +10,6 @@ export function getStagedDiff() {
 
 
 export function commitChanges(message) {
-    execSync(`git commit -m "${message}"`);
+    const escapedMessage = message.replace(/"/g, '\\"')
+    execSync(`git commit -m "${escapedMessage}"`);
 }
