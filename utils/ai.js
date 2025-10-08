@@ -26,14 +26,14 @@ export default async function generateCommit() {
             messages: [
                 {
                     role: "system",
-                    content: "You are a helpful assistant that generates concise, conventional commit messages."
+                    content: "You are a commit message generator. Generate ONLY a single-line conventional commit message. Do not include explanations, code blocks, or multiple lines. Format: type(scope): description"
                 },
                 {
                     role: "user",
-                    content: `Generate a short conventional commit message for these changes:\n\n${diff}`
+                    content: `Generate a single-line conventional commit message (max 72 characters) for:\n\n${diff}`
                 }
             ],
-            max_tokens: 150
+            max_tokens: 50
         });
 
         return response.choices[0].message.content.trim();
@@ -45,7 +45,7 @@ export default async function generateCommit() {
         });
 
         const result = await model.generateContent(
-            `Generate a short, conventional commit message for these changes:\n\n${diff}`
+            `Generate ONLY a single-line conventional commit message for these changes. No explanations, no code blocks, no markdown. Just one line in format: type(scope): description. Maximum 72 characters.\n\nChanges:\n${diff}`
         );
 
         return result.response.text().trim();
