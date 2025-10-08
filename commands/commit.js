@@ -27,7 +27,7 @@ export default async function commitCommand() {
             commitMessage = await generateCommit();
             responseSpinner.succeed("Commit message generated!");
             console.log("\n Suggested commit message:");
-            console.log(`\n ${commitMessage} \n`);
+            console.log(` ${commitMessage} \n`);
 
             //Asking user
             const { action } = await inquirer.prompt([
