@@ -6,7 +6,7 @@
 
 > Generate beautiful, conventional commit messages using AI. Say goodbye to "fix stuff" commits! 👋
 
-**AICX** is a CLI tool that uses AI (OpenAI or Gemini) to automatically generate meaningful commit messages based on your staged changes. It follows the [Conventional Commits](https://www.conventionalcommits.org/) specification.
+**AICX** is a CLI tool that uses AI (OpenAI or Gemini) to automatically generate meaningful commit messages based on your staged changes. It follows the [Conventional Commits](https://www.conventionalcommits.org/) specification and automatically pushes to your remote repository.
 
 ## ✨ Features
 
@@ -14,6 +14,7 @@
 - 🎯 **Conventional Commits** - Follows standard commit message format
 - 🔄 **Regenerate** - Not happy? Generate a new message instantly
 - ✏️ **Edit Before Commit** - Review and modify messages before committing
+- 🚀 **Auto-Push** - Automatically pushes to remote after committing
 - 🆓 **Free Option** - Use Gemini's free API
 - 💰 **Premium Option** - Use OpenAI for enhanced quality
 - 🎨 **Beautiful CLI** - Clean, intuitive interface with helpful feedback
@@ -58,7 +59,7 @@ git add .
 aicx commit
 ```
 
-That's it! 🎉
+That's it! AICX will commit your changes and push them to your remote repository automatically. 🎉
 
 ## 📖 Usage
 
@@ -79,14 +80,21 @@ This will:
 # Stage your changes first
 git add <files>
 
-# Generate commit
+# Generate commit and push
 aicx commit
 ```
 
+AICX will:
+1. Analyze your staged changes
+2. Generate an AI-powered commit message
+3. Let you approve, regenerate, or edit the message
+4. Commit your changes locally
+5. Automatically push to remote
+
 You'll see options to:
-- **Use this message** - Commit with the generated message
+- **Use this message** - Commit and push with the generated message
 - **Regenerate** - Generate a new message
-- **Edit manually** - Modify the message before committing
+- **Edit manually** - Modify the message before committing and pushing
 - **Cancel** - Exit without committing
 
 ### Get Help
@@ -111,7 +119,7 @@ aicx --version
 $ git add src/components/Button.js
 $ aicx commit
 
-✔ Ready! Using gemini (AIzaSyBn...)
+✔ API key loaded: AIzaSyBn...
 ⠋ Generating commit message...
 ✔ Commit message generated!
 
@@ -123,6 +131,10 @@ $ aicx commit
   Regenerate
   Edit manually
   Cancel
+
+✔ Changes committed successfully!
+⠋ Pushing to remote...
+✔ Pushed to remote successfully! 
 ```
 
 ### Editing Messages
@@ -132,6 +144,23 @@ $ aicx commit
 ? Enter your commit message: feat(ui): add Button component with animations
 ⠋ Committing changes...
 ✔ Changes committed successfully!
+⠋ Pushing to remote...
+✔ Pushed to remote successfully! 
+```
+
+### Regenerating Messages
+
+```bash
+? What you like to do? Regenerate
+⠋ Generating commit message...
+✔ Commit message generated!
+
+ Suggested commit message:
+ feat(components): introduce Button component with hover states 
+
+? What you like to do? Use this message
+✔ Changes committed successfully!
+✔ Pushed to remote successfully! 
 ```
 
 ### Generated Commit Examples
@@ -236,6 +265,38 @@ git init
 - **Gemini:** Wait a moment and try again (60 requests/min limit)
 - **OpenAI:** Check your tier limits or upgrade your plan
 
+### "Push failed" or "No upstream branch"
+
+**Solution:** Set upstream branch first:
+```bash
+git push -u origin <branch-name>
+# Then use aicx normally
+```
+
+**Note:** If push fails, your changes are still committed locally. AICX will show:
+```
+⚠ Committed locally. Push manually with 'git push'.
+```
+
+### "No internet connection during push"
+
+**Solution:** Your commit is safe locally. The tool gracefully handles push failures:
+```
+✔ Changes committed successfully!
+⚠ Committed locally. Push manually with 'git push'.
+```
+Simply push when your connection is restored:
+```bash
+git push
+```
+
+### "Permission denied (publickey)"
+
+**Solution:** Set up SSH keys for your Git provider:
+- [GitHub SSH Setup](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+- [GitLab SSH Setup](https://docs.gitlab.com/ee/user/ssh.html)
+- [Bitbucket SSH Setup](https://support.atlassian.com/bitbucket-cloud/docs/set-up-an-ssh-key/)
+
 ## 🛠️ How It Works
 
 1. **Reads Git Diff** - Analyzes your staged changes
@@ -243,6 +304,7 @@ git init
 3. **Generates Message** - Creates a conventional commit message
 4. **Interactive Review** - Lets you approve, regenerate, or edit
 5. **Commits** - Executes `git commit` with the final message
+6. **Auto-Push** - Automatically pushes to your remote repository
 
 ## 🔒 Security & Privacy
 
@@ -279,6 +341,12 @@ aicx --help
 
 ## 📝 Changelog
 
+### v1.0.1 (Current)
+- ✨ **New:** Auto-push to remote after committing
+- ✨ **New:** Graceful error handling for push failures
+- 🐛 **Fixed:** Improved error messages for unknown commands
+- 📚 **Docs:** Updated README with auto-push information
+
 ### v1.0.0 (Initial Release)
 - ✅ OpenAI integration (GPT-4o-mini)
 - ✅ Gemini integration (Gemini 2.5 Flash)
@@ -301,6 +369,7 @@ Future features we're considering:
 - [ ] Team presets and sharing
 - [ ] Commit message analysis and suggestions
 - [ ] Local LLM support (Ollama)
+- [ ] Option to disable auto-push (config setting)
 
 Vote for features or suggest new ones in [Issues](https://github.com/rajbodhak/aicx/issues)!
 
