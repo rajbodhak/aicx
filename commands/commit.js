@@ -2,7 +2,7 @@ import ora from "ora";
 import { getConfig } from "../utils/config.js";
 import generateCommit from "../utils/ai.js";
 import inquirer from "inquirer";
-import { commitChanges } from "../utils/git.js";
+import { commitChanges, pushChanges } from "../utils/git.js";
 
 export default async function commitCommand() {
     const spinner = ora("Checking API key...").start();
@@ -48,6 +48,14 @@ export default async function commitCommand() {
                 const commitSpinner = ora("Committing changes...").start();
                 commitChanges(commitMessage);
                 commitSpinner.succeed("Changes committed successfully!");
+
+                const pushSpinner = ora("Pushing to remote...").start();
+                try {
+                    pushChanges();
+                    pushSpinner.succeed("Pushed to remote successfully!");
+                } catch (error) {
+                    pushSpinner.warn("Committed locally. Push manually with 'git push'.");
+                }
                 shouldContinue = false;
             } else if (action === "regenerate") {
                 continue;
@@ -62,10 +70,18 @@ export default async function commitCommand() {
                 ]);
                 const commitSpinner = ora("Committing changes...").start();
                 commitChanges(editMessage);
-                commitSpinner.succeed("Changes committed successfully");
+                commitSpinner.succeed("Changes committed successfully!");
+
+                const pushSpinner = ora("Pushing to remote...").start();
+                try {
+                    pushChanges();
+                    pushSpinner.succeed("Pushed to remote successfully! 🚀");
+                } catch (error) {
+                    pushSpinner.warn("Committed locally. Push manually with 'git push'.");
+                }
                 shouldContinue = false;
             } else if (action === "cancel") {
-                console.log("❌ Commit cancelled!")
+                console.log("❌ Commit cancelled!");
                 shouldContinue = false;
             }
         }
