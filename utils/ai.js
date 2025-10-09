@@ -21,22 +21,33 @@ export default async function generateCommit() {
             apiKey: config.apiKey
         });
 
-        const response = await client.chat.completions.create({
-            model: "gpt-4o-mini",
-            messages: [
-                {
-                    role: "system",
-                    content: "You are a commit message generator. Generate ONLY a single-line conventional commit message. Do not include explanations, code blocks, or multiple lines. Format: type(scope): description"
-                },
-                {
-                    role: "user",
-                    content: `Generate a single-line conventional commit message (max 72 characters) for:\n\n${diff}`
-                }
-            ],
-            max_tokens: 50
-        });
+        try {
+            const response = await client.chat.completions.create({
+                model: "gpt-4o-mini",
+                messages: [
+                    {
+                        role: "system",
+                        content: "You are a commit message generator. Generate ONLY a single-line conventional commit message. Do not include explanations, code blocks, or multiple lines. Format: type(scope): description"
+                    },
+                    {
+                        role: "user",
+                        content: `Generate a single-line conventional commit message (max 72 characters) for:\n\n${diff}`
+                    }
+                ],
+                max_tokens: 50
+            });
 
-        return response.choices[0].message.content.trim();
+            return response.choices[0].message.content.trim();
+        } catch (error) {
+            if (error.status === 401) {
+                throw new Error("Invalid OpenAI API key. Please run 'aicx init' to reconfigure.");
+            } else if (error.status === 429) {
+                throw new Error("Rate limit exceeded. Please try again in a moment.");
+            } else if (error.code === 'insufficient_quota') {
+                throw new Error("Insufficient OpenAI credits. Please add funds to your account.");
+            }
+            throw error;
+        }
 
     } else if (provider === "gemini") {
         const genAI = new GoogleGenerativeAI(config.apiKey);
