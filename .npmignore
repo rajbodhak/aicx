@@ -1,0 +1,58 @@
+# Development files
+*.log
+*.swp
+*.swo
+*~
+.DS_Store
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
+__tests__/
+coverage/
+
+# Documentation
+docs/
+.github/
+CONTRIBUTING.md
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.travis.yml
+.gitlab-ci.yml
+circle.yml
+appveyor.yml
+.circleci/
+
+# Development dependencies
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Examples and demos
+examples/
+demo/
+screenshots/
+
+# Build artifacts
+dist/
+build/
+
+# Misc
+TODO.md
+NOTES.md

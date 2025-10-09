@@ -381,7 +381,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 **Raj Bodhak**
 - GitHub: [@rajbodhak](https://github.com/rajbodhak)
-- Twitter: [@rajidesu](https://twitter.com/rajbodhak) 
+- Twitter: [@rajidesu](https://twitter.com/rajidesu) 
 
 ## 🙏 Acknowledgments
 
