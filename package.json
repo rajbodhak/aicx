@@ -1,15 +1,16 @@
 {
   "name": "aicx-cli",
-  "version": "1.0.0",
-  "description": "AI-powered commit message generator for Git using OpenAI or Gemini",
+  "version": "1.0.1",
+  "description": "AI-powered commit message generator for Git using OpenAI or Gemini. Generate beautiful, conventional commits automatically.",
   "type": "module",
-  "main": "bin/index.js",
   "bin": {
     "aicx": "bin/index.js"
   },
+  "preferGlobal": true,
   "scripts": {
+    "start": "node bin/index.js",
     "test": "echo \"No tests yet\" && exit 0",
-    "start": "node bin/index.js"
+    "postinstall": "echo 'aicx installed! Run `aicx init` to configure your AI key.'"
   },
   "keywords": [
     "git",
@@ -21,9 +22,17 @@
     "conventional-commits",
     "commit-message",
     "automation",
-    "developer-tools"
+    "developer-tools",
+    "git-commit",
+    "commit-generator",
+    "ai-commit",
+    "gpt",
+    "gemini-ai"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": {
+    "name": "Raj Bodhak",
+    "email": "rajlaptop2004@gmail.com"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -41,8 +50,12 @@
     "commands/",
     "utils/",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
+  "exports": {
+    "./bin": "./bin/index.js"
+  },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "chalk": "^5.6.2",
