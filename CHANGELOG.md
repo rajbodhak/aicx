@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Local LLM support (Ollama)
 - Option to disable auto-push
 
-## [1.0.1] - 2024-01-XX
+## [1.0.1] - 2025-10-09
 
 ### Added
 - Auto-push to remote after committing successfully
@@ -32,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unknown command handling now matches Git's error format
 - Improved error messaging consistency
 
-## [1.0.0] - 2024-01-XX
+## [1.0.0] - 2025-10-07
 
 ### Added
 - Initial release of AICX CLI
