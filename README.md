@@ -1,8 +1,8 @@
 # AICX - AI-Powered Commit Generator 🚀
 
-[![npm version](https://img.shields.io/npm/v/aicx-cli.svg)](https://www.npmjs.com/package/aicx-cli)
+[![npm version](https://img.shields.io/npm/v/aicx.svg)](https://www.npmjs.com/package/aicx)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/node/v/aicx-cli.svg)](https://nodejs.org)
+[![Node.js Version](https://img.shields.io/node/v/aicx.svg)](https://nodejs.org)
 
 > Generate beautiful, conventional commit messages using AI. Say goodbye to "fix stuff" commits! 👋
 
@@ -25,13 +25,13 @@
 ### Global Installation (Recommended)
 
 ```bash
-npm install -g aicx-cli
+npm install -g aicx
 ```
 
 ### Local Installation
 
 ```bash
-npm install aicx-cli
+npm install aicx
 npx aicx init
 ```
 
@@ -218,9 +218,9 @@ You can manually edit `~/.aicx/config.json` if needed.
 
 **Solution:** Install globally or use `npx`:
 ```bash
-npm install -g aicx-cli
+npm install -g aicx
 # or
-npx aicx-cli init
+npx aicx init
 ```
 
 ### "No API key found"

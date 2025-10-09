@@ -55,7 +55,7 @@ When you create a bug report, include as many details as possible:
 ## Bug: Auto-push fails silently on Windows
 
 **Steps to reproduce:**
-1. Install aicx-cli globally
+1. Install aicx globally
 2. Run `aicx init` and configure with Gemini
 3. Stage changes with `git add .`
 4. Run `aicx commit`

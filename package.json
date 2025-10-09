@@ -1,5 +1,5 @@
 {
-  "name": "aicx-cli",
+  "name": "aicx",
   "version": "1.0.1",
   "description": "AI-powered commit message generator for Git using OpenAI or Gemini. Generate beautiful, conventional commits automatically.",
   "type": "module",
